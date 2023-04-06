@@ -6,6 +6,8 @@ const router = express.Router();
 
 import { UserModel } from "../models/Users.js";
 
+  
+//ost methode
 router.post("/register", async (req, res) => {
 	const { username, password } = req.body;
 	const user = await UserModel.findOne({ username });
@@ -39,21 +41,6 @@ router.post("/register", async (req, res) => {
 	res.json({ token, userID: user._id });
   });
   
-
-// router.post("/login" , async (req,res)=>{
-// 	const {username , password} = req.body
-// 	const user = await UserModel.findOne({ username});
-// 	if(!user) {
-// 		return res.json ({message : "user dosen't Exit"})
-// 	}
-// 	const isPasswordValid = await bcrypt.compare(password, user.password)
-// 	if (!isPasswordValid){
-// 		return res.json({message:"user name or password is incorrect"})
-// 	}
-// 	const token = jwt.sign({id : user._id},"secret")
-// 	res.json({ token, userID: user._id });
-// })
-
 
 
 export {router as userRouter}
